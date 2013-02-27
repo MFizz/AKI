@@ -168,24 +168,87 @@
 		\end{frame}
 	}
 	
-	\section{Anwendungen von Sensornetzen}
+	\section{Sensornetze}
+	\subsection{statische Netze}
 		\begin{frame}
-			\frametitle{Statische Sensornetze}
-			\tikztoverlay at (5.35cm,-0.44cm) (georg) {
+			\frametitle{Anwendungen statischer Netze}
+			\tikztoverlay at (5.35cm,-0.44cm) (atom) {
 			\includegraphics[scale=0.3]{bilder/atomwaffen.png}
 		};%
 		\note{Organisation des Vertrags über das umfassende Verbot von Nuklearversuchen(CTBTO) 50 primäre und 120 sekundäre seismologische Messstationen, die seismische Aktivitäten aufzeichnet und versucht nukleare Explosionen von Erdbeben zu unterscheiden}
 		\end{frame}
-		
 		\begin{frame}
-			\frametitle{Mobile Sensornetze}
+			\frametitle{Vorteile statischer Sensornetze}
+		\end{frame}
+		
+	\subsection{mobile Netze}
+		\begin{frame}
+			\frametitle{Anwendungen mobiler Sensornetze}
 			\begin{itemize}
 				\item militärische Überwachung (Beispiele)
 				\item Überwachung des Ökosystems (Beispiele)
 			\end{itemize}
 		\end{frame}
-	\section{Problemstellung}
+		\begin{frame}
+			\frametitle{Vorteile mobiler Netze}
+			
+		\end{frame}
 	\section{Problemaufbau}
+	\subsection{Einsatzgebiet}
+		\begin{frame}
+			\frametitle{Einsatzgebiet}
+			\includegraphics[scale=0.48]{bilder/aufbau1.png}
+			\note{wir haben eine beliebige Anzahl von Robotern mit entsprechenden Sensoren ausgestattet. diese werden jetzt zufällig in einer abgeschlossenen konvexen Umgebung eingesetzt.}
+		\end{frame}
+	\subsection{Sensorfunktion}
+		\begin{frame}
+			\frametitle{Sensorfunktion}
+			\includegraphics[scale=0.48]{bilder/sensor1.png}
+			\tikzoverlay at (-0.4cm,5cm) {\small $\phi(x,y)=a\cdot exp(-b(x-y)^2)$};
+			\tikzoverlay at (-0.4cm,4.5cm) {\small mit $a=1000$ und $b=-10$};
+		\note{keine Linearkombination von Standardnormalverteilungen}
+		\end{frame}
+		\begin{frame}
+			\frametitle{Sensorfunktion}
+			\tikztoverlay at (2.35cm,-0.44cm) (aufbau) {
+			\includegraphics[scale=0.35]{bilder/aufbau1.png}};
+			\tikztoverlay at (8cm,-0.44cm) (sensor) {
+			\includegraphics[scale=0.35]{bilder/sensor1.png}};
+		\end{frame}
+		
+		\begin{frame}
+			\frametitle{Aufteilung}
+			\includegraphics[scale=0.5]{bilder/vonoroiFische.png}
+			\note{Es gibt eine afrikanische Buntbarschart, die ihr territoriales Verhalten ausüben, indem sie untereinander das Gebiet in sich nicht überschneidende Teilgebiete unterteilen. Sie bilden kleine Gruben deren Ränder dann ein Polygonmuster bilden. Mann kennt dieses Muster auch unter dem Namen Vonoroipartitionen.}
+		\end{frame}
+		\subsection{Vonoroi-Partitionen}
+		\begin{frame}
+			\frametitle{Vonoroi-Partitionen}
+			Gegeben sei:
+			\begin{itemize}
+				\item[•] Menge $S\subset \mathbb{R}^2$
+				\item[•] Menge $P=\{p_1,p_2,...,p_n\} \subset S$
+			\end{itemize}
+			Dann sei die Menge der Vonoroi-Partitionen $\{V_1(P),V_2(P),...,V_n(p)\}$ gegeben durch:
+			\begin{itemize}
+				\item[•] $V_i(P)=\{q \in S| \|q-p_i\|\leq \|q-p_j \|, \forall p_j \in P\}$
+			\end{itemize}
+		\end{frame}
+		\begin{frame}
+			\frametitle{Vonoroi-Partitionen}
+			\tikztoverlay at (5.35cm,-0.44cm) (atom) {
+			\includegraphics[scale=0.6]{bilder/vonoroi.png}
+		};%
+		\end{frame}
+		\begin{frame}
+			\frametitle{Vonoroi-Partitionen}
+			\includegraphics[scale=0.48]{bilder/aufbau2.png}
+		\end{frame}
+		\subsection{Sensorfunktion}
+		\begin{frame}
+			\frametitle{Vonoroi-Partitionen}
+			\includegraphics[scale=0.48]{bilder/aufbau2.png}
+		\end{frame}
 	\subsection{allgemein}
 	\subsection{ohne Sensorfunktion}
 	\section{Wofür wird KI gebraucht}
