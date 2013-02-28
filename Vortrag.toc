@@ -1,0 +1,16 @@
+\beamer@endinputifotherversion {3.10pt}
+\select@language {ngerman}
+\beamer@sectionintoc {1}{Sensornetze}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{statische Netze}{4}{0}{1}
+\beamer@subsectionintoc {1}{2}{mobile Netze}{6}{0}{1}
+\beamer@sectionintoc {2}{Problemaufbau}{8}{0}{2}
+\beamer@subsectionintoc {2}{1}{Einsatzgebiet}{9}{0}{2}
+\beamer@subsectionintoc {2}{2}{Vonoroi-Partitionen}{12}{0}{2}
+\beamer@subsectionintoc {2}{3}{Aufgabenstellung}{16}{0}{2}
+\beamer@subsectionintoc {2}{4}{Annahmen}{23}{0}{2}
+\beamer@subsectionintoc {2}{5}{Algorithmus}{24}{0}{2}
+\beamer@sectionintoc {3}{Wof\IeC {\"u}r brauchen wir KI?}{25}{0}{3}
+\beamer@subsectionintoc {3}{1}{Annahmen}{26}{0}{3}
+\beamer@subsectionintoc {3}{2}{Neuronale Netze}{27}{0}{3}
+\beamer@sectionintoc {4}{Ergebnisse}{28}{0}{4}
+\beamer@sectionintoc {5}{Fazit}{29}{0}{5}

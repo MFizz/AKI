@@ -164,7 +164,7 @@
 	\AtBeginSection[]{
 		\begin{frame}
 			\frametitle{Inhaltsverzeichnis}
-			\tableofcontents[currentsection]
+			\tableofcontents[hideothersubsections]
 		\end{frame}
 	}
 	
@@ -191,7 +191,14 @@
 		\end{frame}
 		\begin{frame}
 			\frametitle{Vorteile mobiler Netze}
-			
+			Vorteile:			
+			\begin{itemize}
+			\item großer Einsatzbereich
+			\item skalierbar
+			\item flexibel
+			\item Infrastruktur
+			\end{itemize}
+			\note{können sich gegebenheiten anpassen, infrastruktur muss nicht gewartet werden}
 		\end{frame}
 	\section{Problemaufbau}
 	\subsection{Einsatzgebiet}
@@ -200,14 +207,14 @@
 			\includegraphics[scale=0.48]{bilder/aufbau1.png}
 			\note{wir haben eine beliebige Anzahl von Robotern mit entsprechenden Sensoren ausgestattet. diese werden jetzt zufällig in einer abgeschlossenen konvexen Umgebung eingesetzt.}
 		\end{frame}
-	\subsection{Sensorfunktion}
 		\begin{frame}
 			\frametitle{Sensorfunktion}
 			\includegraphics[scale=0.48]{bilder/sensor1.png}
 			\tikzoverlay at (-0.4cm,5cm) {\small $\phi(x,y)=a\cdot exp(-b(x-y)^2)$};
 			\tikzoverlay at (-0.4cm,4.5cm) {\small mit $a=1000$ und $b=-10$};
-		\note{keine Linearkombination von Standardnormalverteilungen}
+		\note{keine Linearkombination von Standardnormalverteilungen, kann bedeuten hohe ereignisdichte in dieser region}
 		\end{frame}
+		
 		\begin{frame}
 			\frametitle{Sensorfunktion}
 			\tikztoverlay at (2.35cm,-0.44cm) (aufbau) {
@@ -215,13 +222,16 @@
 			\tikztoverlay at (8cm,-0.44cm) (sensor) {
 			\includegraphics[scale=0.35]{bilder/sensor1.png}};
 		\end{frame}
+
+ 
+		\subsection{Vonoroi-Partitionen}		
 		
 		\begin{frame}
 			\frametitle{Aufteilung}
 			\includegraphics[scale=0.5]{bilder/vonoroiFische.png}
 			\note{Es gibt eine afrikanische Buntbarschart, die ihr territoriales Verhalten ausüben, indem sie untereinander das Gebiet in sich nicht überschneidende Teilgebiete unterteilen. Sie bilden kleine Gruben deren Ränder dann ein Polygonmuster bilden. Mann kennt dieses Muster auch unter dem Namen Vonoroipartitionen.}
 		\end{frame}
-		\subsection{Vonoroi-Partitionen}
+		
 		\begin{frame}
 			\frametitle{Vonoroi-Partitionen}
 			Gegeben sei:
@@ -244,14 +254,116 @@
 			\frametitle{Vonoroi-Partitionen}
 			\includegraphics[scale=0.48]{bilder/aufbau2.png}
 		\end{frame}
-		\subsection{Sensorfunktion}
+		\subsection{Aufgabenstellung}
 		\begin{frame}
-			\frametitle{Vonoroi-Partitionen}
-			\includegraphics[scale=0.48]{bilder/aufbau2.png}
+			\frametitle{Was ist das Ziel?}
+			\includegraphics[scale=0.35]{bilder/sensor2.png}
 		\end{frame}
-	\subsection{allgemein}
-	\subsection{ohne Sensorfunktion}
-	\section{Wofür wird KI gebraucht}
+		\begin{frame}
+			\frametitle{Was ist das Ziel}
+			\tikztoverlay at (2.35cm,-0.44cm) (endzustand) {
+			\includegraphics[scale=0.37]{bilder/endzustand.png}};
+			\tikztoverlay at (8.3cm,-0.44cm) (sensor) {
+			\includegraphics[scale=0.37]{bilder/sensor1.png}};
+			\note{Wir wollen eine gute Abdeckung mit guter Verlässlichkeit}
+		\end{frame}
+		\begin{frame}
+			\frametitle{Wie wird dieses Ziel formalisiert}
+			\begin{itemize}
+			\item Unverlässlichkeit der Sensorinformationen eines Roboters mit einer quadratischen Funktion $f(x)$:\\
+			$f(\| q-p_i \|)=\frac{1}{2}(\| q-p_i \|)^2$
+			\note{Man erkennt, dass je weiter der Roboter vom Punkt q entfernt ist, desto unverlässlicher werden die Daten}
+			\item Systemperformanz wird in Abdeckungsfunktion gemessen:\\
+			$H(p_1,...,p_n)=\sum^N_{i=1}\int_{V_i}\frac{1}{2}(\| q-p_i \|)^2 \phi(q)dq$\\
+			\item Minimierung $\rightarrow$ Optimalität
+			\end{itemize}
+			\note{Mann sieht dass hohe unverlässlichkeit teuer ist und hohe werte in der sensorfunktion auch. unverlässlichkeit ist schlimmer in guten spots als in schlechten}
+		\end{frame}
+	\begin{frame}
+		\frametitle{Vergleich Vonoroi-Partition und Festkörper}
+		\includegraphics[scale=0.6]{bilder/stein1.png}\quad
+		\includegraphics[scale=0.3]{bilder/stein2.jpg}\\
+		\tikzoverlay at (-0.7cm,0cm) {Schwerpunkt über Sensorfunktion};		
+		\tikzoverlay at (4.7cm,2.3cm) {\huge $\rightarrow$};		
+		\tikzoverlay at (4.6cm,0cm) {\huge $\rightarrow$};			
+		\tikzoverlay at (5.3cm,0cm) {Schwerpunkt über Dichtefunktion};		
+		
+	\end{frame}
+	\begin{frame}
+		\frametitle{Festkörpereigenschaften}
+		Bestimmte Eigenschaften können auch auf Vonoroi-Partitionen übertragen werden:
+			\begin{itemize}
+				\item Massemoment:\\
+				$M_{V_i}=\int_{V_i}\phi(q)dq$
+				\item Erstes Moment:\\
+				$L_{V_i}=\int_{V_i}q\phi(q)dq$
+				\item Schwerpunkt:\\
+				$C_{V_i}=\frac{M_{V_i}}{L_{V_i}}$
+			\end{itemize}
+	\end{frame}
+	\begin{frame}
+		Vereinfachung für Optimierung:
+		\begin{itemize}
+			\frametitle{Optimierung}
+			\item $\frac{\delta H}{\delta p_i}=-\int_{V_i}(q-p_i)\phi (q)dq=-M_{V_i}(C_{V_i}-L_{V_i})$
+		\end{itemize}
+		$\rightarrow$ Optimalität wenn Roboter in jeweiligen Schwerpunkten der Vonoroi-Partitionen
+		\begin{itemize}
+			\item Finden globaler Minima ist NP-Hart $\rightarrow$ Beschränkung auf lokale Minima 
+		\end{itemize}
+	\end{frame}
+	\begin{frame}
+		\frametitle{Wie bewegt sich der Roboter?}
+		Bewegung des Roboters modelliert durch:
+		\begin{itemize}
+			\item \.{p}$ =u_i$
+		\end{itemize}
+		wobei das control law $u_i$ gegeben ist durch:
+		\begin{itemize}
+			\item $u_i=k_i(p_i-C_{V_i}$
+		\end{itemize}
+		$p_i$ macht Gradientenabstieg
+		\tikztoverlay at (4.5cm,2cm) (sensor) {
+			\includegraphics[scale=0.35]{bilder/gradient.jpg}};
+	\end{frame}
+	\subsection{Annahmen}
+	\begin{frame}
+		\frametitle{Annahmen}
+		\begin{itemize}
+			\item Sensorfunktion bekannt
+			\item Sensorfunktion konstant
+			\item Roboter kann eigene Vonoroi-Partition berechnen
+		\end{itemize}
+	\end{frame}
+	\subsection{Algorithmus}
+	\begin{frame}
+		\frametitle{Algorithmus zur Optimierung von $h$}
+		Loop:		
+		\begin{itemize}				
+			\item Abstand zu anderen Robotern berechnen
+			\item eigene Vonoroi-Partition berechnen
+			\item den Schwerpunkt $C_{V_i}$ berechnen
+			\item control-input $u_i=k_i(p_i-C_{V_i}$ anwenden
+		\end{itemize}
+	\end{frame}
+	\section{Wofür brauchen wir KI?}
+	\subsection{Annahmen}
+	\begin{frame}
+		\frametitle{Annahmen}
+		\begin{itemize}
+			\item Sensorfunktion \textbf{nicht} bekannt
+			\item Robotor kann Funktionswert an seiner Stelle messen
+			\item Sensorfunktion konstant
+			\item Roboter kann eigene Vonoroi-Partition berechnen
+		\end{itemize}
+	\end{frame}
+	\subsection{Neuronale Netze}
+	\begin{frame}
+		\frametitle{Neuronales Netzwerk zur Abschätzung von $H$}
+		\includegraphics[scale=0.35]{bilder/nn.png}
+	\end{frame}
 	\section{Ergebnisse}
 	\section{Fazit}
+	
+	
 \end{document}
